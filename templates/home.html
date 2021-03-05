@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" >
+    <meta name="viewpoint" content="width=device-width", initial-scale=1>
+    <title>Title</title>
+    <style type="text/css" media="all">
+        .container{
+            margin:auto;
+            width:600px;
+            max-width:90%;
+            }
+        .container form{
+            width:100%;
+            height:100%;
+            padding:20px;
+            background: white;
+            border-radius:4px;
+            box-shadow:0 8px 16px rgba(0,0,0,.3);
+        }
+        .container form h1{
+            text-align:center;
+            margin-bottom:24px;
+            color:#222;
+            font-family: sans-serif;
+        }
+        .container form .form-control{
+            width:95%;
+            height:50px;
+            background:white;
+            border-radius:4px;
+            border: 1px solid silver;
+            margin: 10px 0 25px 5px;
+            padding: 0 10px;
+        }
+        .container form .btn{
+            margin-left:30%;
+            transform:transalateX(-50%);
+            width: 1;
+            width:240px;
+            height:43px;
+            background:#27a327;
+            cursor: pointer;
+            font-size:16px;
+            text-transform: uppercase;
+            color:white;
+            border-radius:10px;
+        }
+        .container1{
+            margin:auto;
+            width:650px;
+            max-width:100%;
+            padding:10px ;
+            height:auto;
+        }
+        .container1 table{
+            width:100%;
+            height:100%;
+            padding:20px;
+            margin:10px;
+            margin-left:20px;
+            background: white;
+            border-radius:4px;
+            box-shadow:0 8px 16px rgba(0,0,0,.3);
+
+        }
+        .container1 table .btn{
+            padding:1px 10px; 
+            background:#2786a3;
+            cursor: pointer;
+            font-size:16px;
+            text-transform: uppercase;
+            color:white;
+            border-radius:5px;
+
+        }
+
+    </style>
+</head>
+<body>
+   <div class="container">
+       <form method='post'>
+            {% csrf_token %}
+           <div class="form-group">
+               <label for="data"><h1>Enter Data</h1></label>
+               <input type="text" name="data" id="data" class="form-control"/>
+               {{msg}}
+           </div>
+                <input type="submit" value='add' class="btn"/>
+       </form>
+       
+   </div>
+   <div class="container1">
+       <table cellpadding="5px 10px 0" >
+           <tr>
+                <th>NUMERIC DATA</th>
+           </tr>
+        {% for dt in data_digit %}
+           <tr>
+               <td width="80%">{{dt.digit}}</td>
+               <td>
+                <a href="delete_num/{{dt.id}}" class="btn">Delete</a>
+               </td>
+           </tr>
+        {% endfor %}
+       </table>
+       <table cellpadding="5px 10px 0">
+           <tr>
+               <th>STRING DATA</th>
+           </tr>
+
+        {% for ds in str_data %}
+            <tr >
+                <td width="80%">
+                    {{ds.string}}
+                </td>
+                <td>
+                    <a href="delete_str/{{ds.id}}" class="btn">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+       </table>
+   <table cellpadding="5px 10px 0">
+    <tr>
+        <th>ALPHANUMERIC DATA</th>
+    </tr>
+
+ {% for da in alpha_data %}
+     <tr>
+         <td width="80%">
+             {{da.alpha}}
+         </td>
+         <td>
+            <a href="delete_al/{{da.id}}" class="btn">Delete</a>
+        </td>
+     </tr>
+ {% endfor %}
+</table>
+</div>
+    
+</div>
+</body>
+</html>
